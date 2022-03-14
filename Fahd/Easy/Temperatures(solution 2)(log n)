@@ -1,0 +1,93 @@
+/***
+*  Author:
+*
+*         ██████|  /███\  |█   █|  █████\
+*         █|       █   █  |█   █|  █    ██\
+*         ██████|  █████   █████   █    ███|
+*         █|       █   █  |█   █|  █    ██/
+*         █|       █   █  |█   █|  █████/
+*
+***/
+#include<bits/stdc++.h>
+#define int long long
+#define FAST ios_base::sync_with_stdio(0),cin.tie(0),cout.tie(0);
+#define double long double
+#define all(v)  v.begin(),v.end()
+#define FAST ios_base::sync_with_stdio(0),cin.tie(0),cout.tie(0);
+#define ll endl
+#define forr(i , n) for(int i = 0 ; i < n ; i++)
+#define forr1(i , n) for(int i = 1 ; i <= n ; i++)
+#define pi pair<int,int>
+#define pis     priority_queue<pi, vector<pi>, greater<pi> > s;
+#define pig     priority_queue<pi>g;
+#define pas     priority_queue<int, vector<int>, greater<int> > s;
+#define pag     priority_queue<int>g;
+#define vpi vector<pair<int,int>>
+#define YES cout <<"YES"<<ll;
+#define NO cout <<"NO"<<ll;
+#define Yes cout <<"Yes"<<ll;
+#define No cout <<"No"<<ll;
+#define yes cout <<"yes"<<ll;
+#define no cout <<"no"<<ll;
+#define opz   std::plus<int>()
+#define opn  std::minus<int>()
+#define opm std::multiplies<int>()
+using namespace std;
+const int N  = 1e4 +5 ;
+int a[N];
+int n;
+int bs(){
+    int l = 0 ;
+    int h = n-1;
+    int mid;
+    while (h > l){
+      mid = l + (h - l)/2;
+      if( a[mid] > 0 ) {
+          h = mid ;
+      }
+      else {
+          l = mid +1;
+      }
+    }
+    if(l > n-1) return -1;
+   else  return l;
+}
+int bs2(){
+    int l = 0 ;
+    int h = n-1;
+    int mid;
+    while (h > l){
+        mid = l + (h - l)/2;
+        if( a[mid] < 0 ) {
+            l = mid+1 ;
+        }
+        else{
+            h = mid - 1;
+        }
+    }
+    if(l > n) return -1;
+   else  return l;
+}
+void solve() {
+    int x = 5526 , y=-273;
+cin >> n ;
+if(n == 0){
+    cout <<0<<ll;
+    return;
+}
+forr(i , n) cin  >>a[i];
+    sort(a , a + n);//-8 -2 1 4 5
+    if(bs() != -1) x = a[bs()];
+    if(bs2() != -1) y = a[bs2()];
+    cout << min(x , abs(y))<<ll;
+}
+
+int32_t main() {
+    FAST
+    int t = 1;
+   //  cin >> t;
+//     cin.ignore();
+    while(t--){
+        solve();
+    }
+}
