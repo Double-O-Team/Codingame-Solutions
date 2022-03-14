@@ -1,0 +1,108 @@
+/***
+*  Author:
+*
+*         ██████|  /███\  |█   █|  █████\
+*         █|       █   █  |█   █|  █    ██\
+*         ██████|  █████   █████   █    ███|
+*         █|       █   █  |█   █|  █    ██/
+*         █|       █   █  |█   █|  █████/
+*
+***/
+#include<bits/stdc++.h>
+#define int long long
+#define FAST ios_base::sync_with_stdio(0),cin.tie(0),cout.tie(0);
+#define double long double
+#define all(v)  v.begin(),v.end()
+#define FAST ios_base::sync_with_stdio(0),cin.tie(0),cout.tie(0);
+#define ll endl
+#define forr(i , n) for(int i = 0 ; i < n ; i++)
+#define forr1(i , n) for(int i = 1 ; i <= n ; i++)
+#define pi pair<int,int>
+#define pis     priority_queue<pi, vector<pi>, greater<pi> > s;
+#define pig     priority_queue<pi>g;
+#define pas     priority_queue<int, vector<int>, greater<int> > s;
+#define pag     priority_queue<int>g;
+#define vpi vector<pair<int,int>>
+#define YES cout <<"YES"<<ll;
+#define NO cout <<"NO"<<ll;
+#define Yes cout <<"Yes"<<ll;
+#define No cout <<"No"<<ll;
+#define yes cout <<"yes"<<ll;
+#define no cout <<"no"<<ll;
+#define opz   std::plus<int>()
+#define opn  std::minus<int>()
+#define opm std::multiplies<int>()
+using namespace std;
+const int N  = 26;
+
+void solve() {
+int n ;
+cin >> n; cin.ignore();
+vector<vector<char>>vv(n);
+for(int i = 0 ; i < n ; i++) {
+    string s;
+    getline(cin, s);
+    vector<int> v;
+    string str = "";
+    int x = 0;
+    for (int j = 0; j < s.size(); j++) {
+        if (s[j] != ' ' ){
+            str+=s[j];
+            if(j == s.size() - 1) {
+                x = stoi(str);
+                v.push_back(x);
+            }
+            continue;
+        }
+        x = stoi(str);
+        v.push_back(x);
+        str =" ";
+    }
+
+    if(v[0] == 0){
+        for(int k = 1 ; k < v.size() ;k++){
+            if(k %2 != 0) {
+                for (int l = 0; l < v[k]; l++) {
+                    vv[i].push_back('O');
+                }
+            }
+            else{
+                for (int l = 0; l < v[k]; l++) {
+                    vv[i].push_back('.');
+                }
+            }
+        }
+    }
+    else{
+        for(int k = 0 ; k < v.size() ;k++){
+            if(k %2 == 0) {
+                for (int l = 0; l < v[k]; l++) vv[i].push_back('.');
+            }
+            else{
+                for (int l = 0; l < v[k]; l++) vv[i].push_back('O');
+            }
+        }
+    }
+}
+for(int i = 0 ; i < n ; i++){
+    if(vv[0].size() != vv[i].size()) {
+        cout <<"INVALID"<<ll;
+        return;
+    }
+}
+for(int i =0 ; i < n ; i++){
+    for(int j = 0; j < vv[i].size() ;j++){
+        cout <<vv[i][j];
+    }
+    cout<<ll;
+}
+}
+
+int32_t main() {
+    FAST
+    int t = 1;
+    // cin >> t;
+    while(t--){
+        solve();
+    }
+}
