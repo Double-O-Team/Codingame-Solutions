@@ -1,0 +1,80 @@
+/***
+*  Author:
+*
+*         ██████|  /███\  |█   █|  █████\
+*         █|       █   █  |█   █|  █    ██\
+*         ██████|  █████   █████   █    ███|
+*         █|       █   █  |█   █|  █    ██/
+*         █|       █   █  |█   █|  █████/
+*
+***/
+#include<bits/stdc++.h>
+#define int long long
+#define FAST ios_base::sync_with_stdio(0),cin.tie(0),cout.tie(0);
+#define double long double
+#define all(v)  v.begin(),v.end()
+#define FAST ios_base::sync_with_stdio(0),cin.tie(0),cout.tie(0);
+#define ll endl
+#define forr(i , n) for(int i = 0 ; i < n ; i++)
+#define forr1(i , n) for(int i = 1 ; i <= n ; i++)
+#define pi pair<int,int>
+#define pis     priority_queue<pi, vector<pi>, greater<pi> > s;
+#define pig     priority_queue<pi>g;
+#define pas     priority_queue<int, vector<int>, greater<int> > s;
+#define pag     priority_queue<int>g;
+#define vpi vector<pair<int,int>>
+#define YES cout <<"YES"<<ll;
+#define NO cout <<"NO"<<ll;
+#define Yes cout <<"Yes"<<ll;
+#define No cout <<"No"<<ll;
+#define yes cout <<"yes"<<ll;
+#define no cout <<"no"<<ll;
+#define opz   std::plus<int>()
+#define opn  std::minus<int>()
+#define opm std::multiplies<int>()
+using namespace std;
+
+double dis(int x ,int y, int x1 , int y1 ){
+    double a =sqrt(pow(x1 - x , 2 ) + pow(y1 - y , 2)) / 2;
+    return a;
+}
+void solve() {
+    char cc1 , cc2 , cc3 , cc4;
+    int a1 , a2 , b1 , b2 , c1 ,c2 , d1 , d2;
+    cin >> cc1 >> a1 >> a2>>cc2 >> b1 >>b2>>cc3 >> c1 >> c2>>cc4 >>d1 >>d2;
+     //cout << a1 <<" "<< a2 <<" "<<b1 <<" "<<b2 <<ll;
+    double shape1 = dis(a1 , a2 , b1 , b2);
+    double shape2 = dis(b1 , b2 , c1 , c2);
+    double shape3 = dis(c1 , c2 , d1 , d2);
+    double shape4 = dis(d1 , d2 , a1 , a2);
+    double shape5 = dis(a1 , a2 , c1 , c2);
+    double shape6 = dis(b1 , b2 , d1 , d2);
+    map<double , int>m;
+    m[shape1]++;
+    m[shape2]++;
+    m[shape3]++;
+    m[shape4]++;
+    m[shape5]++;
+    m[shape6]++;
+    string s = "";
+    for(auto mm: m){
+        s+= to_string(mm.second);
+    }
+   // cout <<s <<ll;
+    sort(s.rbegin() , s.rend());
+   // cout << s <<ll;
+    if(s == "321" || s == "2211") cout <<cc1<<cc2<<cc3<<cc4<<" is a parallelogram."<<ll;
+    else if(s == "222") cout <<cc1<<cc2<<cc3<<cc4<<" is a rectangle."<<ll;
+    else if(s == "42") cout <<cc1<<cc2<<cc3<<cc4<<" is a square."<<ll;
+    else if(s == "411") cout <<cc1<<cc2<<cc3<<cc4<<" is a rhombus."<<ll;
+    else cout <<cc1<<cc2<<cc3<<cc4<<" is a quadrilateral."<<ll;
+}
+
+int32_t main() {
+    FAST
+    int t = 1;
+    cin >> t;
+    while(t--){
+        solve();
+    }
+}
