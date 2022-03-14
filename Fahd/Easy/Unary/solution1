@@ -1,0 +1,60 @@
+#include <iostream>
+#include <bits/stdc++.h>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+/**
+ * Auto-generated code below aims at helping you parse
+ * the standard input according to the problem statement.
+ **/
+#define  ll endl
+string binarry(string s){
+    string ans = "";
+    int x  = 0;
+    for(int i =0 ; i < s.size() ; i++){
+        x = (int) s[i];
+        string temp;
+        while(x >= 1){
+            if(x %2 == 0) temp+='0';
+            else temp+='1';
+            x/=2;
+        }
+        int n = temp.size();
+        while (n % 7 !=0){
+            temp+='0';
+            n++;
+        }
+        reverse(temp.begin() , temp.end());
+        ans+=temp;
+    }
+   // reverse(ans.begin() , ans.end());
+    return ans;
+}
+int main()
+{
+    string message;
+    getline(cin, message);
+    string s = binarry(message);
+   // cout << s <<ll;
+    for(int i =0 ; i < s.size() ; i++){
+        char h ;
+        if(s[i] == '0') {
+            cout<<"00"<<" ";
+             h = s[i];
+        }
+        else{
+            cout<<"0"<<" ";
+            h =s[i];
+        }
+        while(s[i] == h){
+         //cout <<i;
+         cout <<"0";
+            i++;
+        }
+        i--;
+        if(i != s.size() - 1)cout <<" ";
+    }
+
+}
