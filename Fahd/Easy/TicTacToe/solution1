@@ -1,0 +1,132 @@
+/***
+*  Author:
+*
+*         ██████|  /███\  |█   █|  █████\
+*         █|       █   █  |█   █|  █    ██\
+*         ██████|  █████   █████   █    ███|
+*         █|       █   █  |█   █|  █    ██/
+*         █|       █   █  |█   █|  █████/
+*
+***/
+#include<bits/stdc++.h>
+#define int long long
+#define FAST ios_base::sync_with_stdio(0),cin.tie(0),cout.tie(0);
+#define double long double
+#define all(v)  v.begin(),v.end()
+#define FAST ios_base::sync_with_stdio(0),cin.tie(0),cout.tie(0);
+#define ll endl
+#define forr(i , n) for(int i = 0 ; i < n ; i++)
+#define forr1(i , n) for(int i = 1 ; i <= n ; i++)
+#define pi pair<int,int>
+#define pis     priority_queue<pi, vector<pi>, greater<pi> > s;
+#define pig     priority_queue<pi>g;
+#define pas     priority_queue<int, vector<int>, greater<int> > s;
+#define pag     priority_queue<int>g;
+#define vpi vector<pair<int,int>>
+#define YES cout <<"YES"<<ll;
+#define NO cout <<"NO"<<ll;
+#define Yes cout <<"Yes"<<ll;
+#define No cout <<"No"<<ll;
+#define yes cout <<"yes"<<ll;
+#define no cout <<"no"<<ll;
+#define opz   std::plus<int>()
+#define opn  std::minus<int>()
+#define opm std::multiplies<int>()
+using namespace std;
+const int N  = 26;
+
+void solve() {
+ char a[3][3];
+ for(int i = 0; i < 3 ; i++){
+     for(int j = 0 ; j < 3 ; j++){
+         cin>>a[i][j];
+     }
+ }
+ int x = 0 , y= 0 , idx = 0 , idy = 0;
+ for(int i=0; i < 3 ;i++){
+     x = 0 , y = 0;
+     for(int j = 0 ; j < 3 ; j++){
+         if(a[i][j] == 'O')x++;
+         if(a[i][j] == '.')y++ , idx = i , idy = j;
+     }
+     if(x==2 && y == 1) {
+         a[idx][idy] = 'O';
+        for(int l = 0 ; l < 3 ;l++){
+            for(int k = 0 ; k < 3 ; k++){
+                cout <<a[l][k];
+            }
+            cout <<ll;
+        }
+         return;
+     }
+ }
+     x = 0 , y= 0 , idx = 0 , idy = 0;
+    for(int i=0; i < 3 ;i++){
+        x = 0 , y = 0;
+        for(int j = 0 ; j < 3 ; j++){
+            if(a[j][i] == 'O')x++;
+            if(a[j][i] == '.')y++ , idx = j , idy = i;
+        }
+        if(x==2 && y == 1) {
+            a[idx][idy] = 'O';
+            for(int l = 0 ; l < 3 ;l++){
+                for(int k = 0 ; k < 3 ; k++){
+                    cout <<a[l][k];
+                }
+                cout <<ll;
+            }
+
+            return;
+        }
+    }
+    x = 0 , y = 0 , idx = 0 , idy =0;
+    int x1 = 0 , y1 = 0;
+    for(int i = 0 ; i < 3 ; i++){
+        //cout <<a[x1][y1]<<ll;
+        if(a[x1][y1] == 'O')x++;
+        if(a[x1][y1] == '.')y++,idx = x1 , idy = y1;
+        x1++;
+        y1++;
+    }
+    if(x==2 && y == 1) {
+        a[idx][idy] = 'O';
+        for(int l = 0 ; l < 3 ;l++){
+            for(int k = 0 ; k < 3 ; k++){
+                cout <<a[l][k];
+            }
+            cout <<ll;
+        }
+
+        return;
+    }
+    x = 0 , y = 0 , idx = 0 , idy =0;
+     x1 = 2 , y1 = 0;
+    for(int i = 0 ; i < 3 ; i++){
+        if(a[x1][y1] == 'O')x++;
+        if(a[x1][y1] == '.')y++,idx = x1 , idy = y1;
+        x1--;
+        y1++;
+    }
+    if(x==2 && y == 1) {
+        a[idx][idy] = 'O';
+        for(int l = 0 ; l < 3 ;l++){
+            for(int k = 0 ; k < 3 ; k++){
+                cout <<a[l][k];
+            }
+            cout <<ll;
+        }
+
+        return;
+    }
+    cout <<"false"<<ll;
+
+}
+
+int32_t main() {
+    FAST
+    int t = 1;
+    // cin >> t;
+    while(t--){
+        solve();
+    }
+}
