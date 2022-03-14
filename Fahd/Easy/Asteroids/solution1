@@ -1,0 +1,104 @@
+/***
+*  Author:
+*
+*         ██████|  /███\  |█   █|  █████\
+*         █|       █   █  |█   █|  █    ██\
+*         ██████|  █████   █████   █    ███|
+*         █|       █   █  |█   █|  █    ██/
+*         █|       █   █  |█   █|  █████/
+*
+***/
+#include<bits/stdc++.h>
+#define int long long
+#define FAST ios_base::sync_with_stdio(0),cin.tie(0),cout.tie(0);
+#define double long double
+#define all(v)  v.begin(),v.end()
+#define FAST ios_base::sync_with_stdio(0),cin.tie(0),cout.tie(0);
+#define ll endl
+#define forr(i , n) for(int i = 0 ; i < n ; i++)
+#define forr1(i , n) for(int i = 1 ; i <= n ; i++)
+#define pi pair<int,int>
+#define pis     priority_queue<pi, vector<pi>, greater<pi> > s;
+#define pig     priority_queue<pi>g;
+#define pas     priority_queue<int, vector<int>, greater<int> > s;
+#define pag     priority_queue<int>g;
+#define vpi vector<pair<int,int>>
+#define YES cout <<"YES"<<ll;
+#define NO cout <<"NO"<<ll;
+#define Yes cout <<"Yes"<<ll;
+#define No cout <<"No"<<ll;
+#define yes cout <<"yes"<<ll;
+#define no cout <<"no"<<ll;
+#define opz   std::plus<int>()
+#define opn  std::minus<int>()
+#define opm std::multiplies<int>()
+using namespace std;
+const int N  = 26;
+
+void solve() {
+    int h, w, t1, t2, t3;
+    cin >> h >> w >> t1 >> t2 >> t3;
+    map<char, pair<int, int>> m;
+    map<char, pair<int, int>> m2;
+    int x = t2 - t1;
+    int y = t3 - t2;
+    vector<char> v;
+    for (int i = 0; i < h; i++) {
+        string fr, sr;
+        cin >> fr >> sr;
+        for (int j = 0; j < fr.size(); j++) {
+            if (fr[j] != '.') {
+                v.push_back(fr[j]);
+                m[fr[j]] = {i, j};
+            }
+        }
+        for (int j = 0; j < sr.size(); j++) {
+            if (sr[j] != '.') {
+                m2[sr[j]] = {i, j};
+            }
+        }
+    }
+    char ans[h][w];
+    for (int i = 0; i < h; i++) {
+        fill(ans[i], ans[i] + w, '.');
+    }
+    for (auto mm: v) {
+        int x1 = m[mm].first;
+        int y1 = m[mm].second;
+        int x2 = m2[mm].first;
+        int y2 = m2[mm].second;
+        double pos1 , pos2 ;
+        pos1 = x2 - x1;
+        pos2 = y2 - y1;
+        pos1 /= t2 - t1;
+        pos2 /= t2 - t1;
+        pos1 *= t3 -t2;
+        pos2 *= t3 -t2;
+        pos1 = floor(pos1);
+        pos2 = floor(pos2);
+        pos1+=x2;
+        pos2+=y2;
+        if(pos1 < 0 || pos1 > w - 1 || pos2 < 0 || pos2 > h - 1) continue;
+        if (ans[(int)pos1][(int)pos2] == '.') {
+            ans[(int)pos1][(int)pos2] = mm;
+        } else {
+            ans[(int)pos1][(int)pos2] = min(ans[(int)pos1][(int)pos2], mm);
+        }
+    }
+    for (int i = 0; i < h; i++) {
+        for (int j = 0; j < w; j++) {
+            cout << ans[i][j] ;
+        }
+        cout << ll;
+    }
+
+}
+
+int32_t main() {
+    FAST
+    int t = 1;
+    // cin >> t;
+    while(t--){
+        solve();
+    }
+}
