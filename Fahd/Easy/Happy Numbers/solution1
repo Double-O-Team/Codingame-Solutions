@@ -1,0 +1,71 @@
+
+/***************************************************
+*  Author:
+*
+*         ██████|  /███\  |█   █|  █████\
+*         █|       █   █  |█   █|  █    ██\
+*         ██████|  █████   █████   █    ███|
+*         █|       █   █  |█   █|  █    ██/
+*         █|       █   █  |█   █|  █████/
+*
+***************************************************/
+#include<bits/stdc++.h>
+#define int long long
+#define FAST ios_base::sync_with_stdio(0),cin.tie(0),cout.tie(0);
+#define double long double
+#define all(v)  v.begin(),v.end()
+#define FAST ios_base::sync_with_stdio(0),cin.tie(0),cout.tie(0);
+#define ll endl
+#define forr(i , n) for(int i = 0 ; i < n ; i++)
+#define forr1(i , n) for(int i = 1 ; i <= n ; i++)
+#define pi pair<int,int>
+#define pis     priority_queue<pi, vector<pi>, greater<pi> > s;
+#define pig     priority_queue<pi>g;
+#define pas     priority_queue<int, vector<int>, greater<int> > s;
+#define pag     priority_queue<int>g;
+#define vpi vector<pair<int,int>>
+#define YES cout <<"YES"<<ll;
+#define NO cout <<"NO"<<ll;
+#define Yes cout <<"Yes"<<ll;
+#define No cout <<"No"<<ll;
+#define yes cout <<"yes"<<ll;
+#define no cout <<"no"<<ll;
+using namespace std;
+bool temp(string s){
+    stringstream geek(s);
+    int sum =0;
+    geek >> sum;
+    while(sum >= 10) {
+        int y=0;
+        forr(i, s.size()) {
+             y+=(s[i] - '0') * (s[i] - '0');
+        }
+        sum = y;
+        s= to_string(y);
+    }
+    if(sum == 1 || sum == 7){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+void solve() {
+int n;
+cin >> n;
+forr(i , n) {
+    string x;
+    cin >> x;
+    if(temp(x)){
+        cout <<x <<" :)"<<ll;
+    }
+    else cout <<x <<" :("<<ll;
+}
+}
+int32_t main() {
+    FAST
+    int t = 1;
+    while(t--){
+        solve();
+    }
+}
