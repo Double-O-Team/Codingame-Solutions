@@ -1,0 +1,40 @@
+#include <iostream>
+#include <string>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+/**
+ * Auto-generated code below aims at helping you parse
+ * the standard input according to the problem statement.
+ **/
+
+int main()
+{
+    int n;
+    cin >> n; cin.ignore();
+    vector<int>cards;
+    for (int i = 0; i < n; i++) {
+        int x;
+        cin >> x; cin.ignore();
+        cards.push_back(x);
+    }
+    int ans=0;
+    sort(cards.begin(),cards.end());
+    while(cards.size()!=1)
+    {
+        sort(cards.begin(),cards.end());
+        
+        ans+=cards[0]+cards[1];
+        cards[1]=cards[0]+cards[1];
+         cards.erase(cards.begin());
+
+
+    }
+
+    // Write an answer using cout. DON'T FORGET THE "<< endl"
+    // To debug: cerr << "Debug messages..." << endl;
+
+    cout << ans << endl;
+}
