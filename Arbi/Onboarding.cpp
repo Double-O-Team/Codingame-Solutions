@@ -29,11 +29,6 @@ int main()
         } else {
             cout << enemy_2 << '\n';
         }
-        // Write an action using cout. DON'T FORGET THE "<< endl"
-        // To debug: cerr << "Debug messages..." << endl;
-
-
-        // You have to output a correct ship name to shoot ("Buzz", enemy1, enemy2, ...)
-       // cout << "name of the enemy" << endl;
+       
     }
 }
