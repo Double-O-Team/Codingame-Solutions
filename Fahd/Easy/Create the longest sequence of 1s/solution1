@@ -1,0 +1,60 @@
+
+#include<bits/stdc++.h>
+#define int long long
+#define FAST ios_base::sync_with_stdio(0),cin.tie(0),cout.tie(0);
+#define double long double
+#define all(v)  v.begin(),v.end()
+#define FAST ios_base::sync_with_stdio(0),cin.tie(0),cout.tie(0);
+#define ll endl
+#define forr(i , n) for(int i = 0 ; i < n ; i++)
+#define forr1(i , n) for(int i = 1 ; i <= n ; i++)
+#define pi pair<int,int>
+#define pis     priority_queue<pi, vector<pi>, greater<pi> > s;
+#define pig     priority_queue<pi>g;
+#define pas     priority_queue<int, vector<int>, greater<int> > s;
+#define pag     priority_queue<int>g;
+#define vpi vector<pair<int,int>>
+#define YES cout <<"YES"<<ll;
+#define NO cout <<"NO"<<ll;
+#define Yes cout <<"Yes"<<ll;
+#define No cout <<"No"<<ll;
+#define yes cout <<"yes"<<ll;
+#define no cout <<"no"<<ll;
+#define opz   std::plus<int>()
+#define opn  std::minus<int>()
+#define opm std::multiplies<int>()
+using namespace std;
+const int N  = 26;
+
+void solve() {
+    string s;
+    cin >> s;
+    int pre = 0 ,next = 0 , zeros = 0 , mx = 0;
+    for(int i =0 ; i < s.size() ; i++){
+        if(s[i] == '0') {
+            if(zeros == 2) mx = max(mx , next);
+            else mx = max(mx , next + pre + 1);
+            pre = next;
+            next = 0;
+            zeros = 0 ;
+            zeros++;
+        }
+        if(s[i] == '1') next++;
+    }
+    if(zeros == 1){
+    
+        mx = max(pre + next + 1 , mx);
+    }
+    
+    cout <<mx<<ll;
+}
+
+int32_t main() {
+    FAST
+    int t = 1;
+     //cin >> t;
+     //cin.ignore();
+    while(t--){
+        solve();
+    }
+}

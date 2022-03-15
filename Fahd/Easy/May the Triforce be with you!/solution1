@@ -1,0 +1,69 @@
+
+#include<bits/stdc++.h>
+#define int long long
+#define FAST ios_base::sync_with_stdio(0),cin.tie(0),cout.tie(0);
+#define double long double
+#define all(v)  v.begin(),v.end()
+#define FAST ios_base::sync_with_stdio(0),cin.tie(0),cout.tie(0);
+#define ll endl
+#define forr(i , n) for(int i = 0 ; i < n ; i++)
+#define forr1(i , n) for(int i = 1 ; i <= n ; i++)
+#define pi pair<int,int>
+#define pis     priority_queue<pi, vector<pi>, greater<pi> > s;
+#define pig     priority_queue<pi>g;
+#define pas     priority_queue<int, vector<int>, greater<int> > s;
+#define pag     priority_queue<int>g;
+#define vpi vector<pair<int,int>>
+#define YES cout <<"YES"<<ll;
+#define NO cout <<"NO"<<ll;
+#define Yes cout <<"Yes"<<ll;
+#define No cout <<"No"<<ll;
+#define yes cout <<"yes"<<ll;
+#define no cout <<"no"<<ll;
+#define opz   std::plus<int>()
+#define opn  std::minus<int>()
+#define opm std::multiplies<int>()
+using namespace std;
+const int N  = 26;
+
+void solve() {
+int n ;
+cin >> n;
+int midrow = 1 + 2 *(n - 1);
+int finalrow = 2 * midrow + 1;
+cout<<'.';
+for(int i= 0 ; i < 2*(n - 1) ; i++){
+    cout <<" ";
+}
+cout <<'*'<<ll;
+int before = 2 * n - 1 - 1;
+for(int i =  1 ; i < n  ; i++){
+    int startrow = 1 + 2 * i ; 
+    for(int j = 0 ; j < before ; j++) cout <<" ";
+    for(int j = 0; j < startrow ; j++) cout <<"*";
+    cout <<ll;
+    before--;
+}
+int bf  = n - 1;
+for(int i = 0 ; i< n ; i++){
+    int row = 1 + 2 * i;
+    int sp = ((2 * bf) +1);
+    for(int j = 0 ; j < bf ;j++) cout <<" ";
+    for(int j = 0 ; j < row ; j++) cout <<"*";
+    for(int j = 0 ; j < sp ; j++)cout<<" ";
+    for(int j = 0 ; j < row ; j++) cout <<"*";
+    cout<<ll;
+    bf--;
+
+}
+}
+
+int32_t main() {
+    FAST
+    int t = 1;
+     //cin >> t;
+     //cin.ignore();
+    while(t--){
+        solve();
+    }
+}

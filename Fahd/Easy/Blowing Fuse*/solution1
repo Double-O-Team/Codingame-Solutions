@@ -1,0 +1,80 @@
+/***
+*  Author:
+*
+*         ██████|  /███\  |█   █|  █████\
+*         █|       █   █  |█   █|  █    ██\
+*         ██████|  █████   █████   █    ███|
+*         █|       █   █  |█   █|  █    ██/
+*         █|       █   █  |█   █|  █████/
+*
+***/
+#include<bits/stdc++.h>
+#define int long long
+#define FAST ios_base::sync_with_stdio(0),cin.tie(0),cout.tie(0);
+#define double long double
+#define all(v)  v.begin(),v.end()
+#define FAST ios_base::sync_with_stdio(0),cin.tie(0),cout.tie(0);
+#define ll endl
+#define forr(i , n) for(int i = 0 ; i < n ; i++)
+#define forr1(i , n) for(int i = 1 ; i <= n ; i++)
+#define pi pair<int,int>
+#define pis     priority_queue<pi, vector<pi>, greater<pi> > s;
+#define pig     priority_queue<pi>g;
+#define pas     priority_queue<int, vector<int>, greater<int> > s;
+#define pag     priority_queue<int>g;
+#define vpi vector<pair<int,int>>
+#define YES cout <<"YES"<<ll;
+#define NO cout <<"NO"<<ll;
+#define Yes cout <<"Yes"<<ll;
+#define No cout <<"No"<<ll;
+#define yes cout <<"yes"<<ll;
+#define no cout <<"no"<<ll;
+#define opz   std::plus<int>()
+#define opn  std::minus<int>()
+#define opm std::multiplies<int>()
+using namespace std;
+const int N  = 26;
+
+void solve() {
+  int n , m , p, x;
+  cin >> n >> m >> p;
+  bool visited[n + 1];
+  fill(visited , visited + n +1, false);
+  map<int , int> mak;
+  for(int i = 1 ; i <= n ; i++){
+      cin >> x;
+      mak[i] = x;
+  }
+  int sum = 0 , mx = 0;
+  forr(i ,m) {
+      cin >> x;
+      if(sum >= p){
+       cout <<"Fuse was blown."<<ll;
+          return;
+      }
+      if(visited[x]){
+         sum-= mak[x] ;
+          visited[x] = false;
+      } else{
+          sum+=mak[x];
+          if(sum >= p){
+              cout <<"Fuse was blown."<<ll;
+              return;
+          }
+          mx = max(sum , mx);
+
+          visited[x] = true;
+      }
+  }
+  cout <<"Fuse was not blown.\n"
+         "Maximal consumed current was "<<mx<<" A."<<ll;
+}
+
+int32_t main() {
+    FAST
+    int t = 1;
+    // cin >> t;
+    while(t--){
+        solve();
+    }
+}

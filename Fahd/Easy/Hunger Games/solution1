@@ -1,0 +1,95 @@
+/***
+*  Author:
+*
+*         ██████|  /███\  |█   █|  █████\
+*         █|       █   █  |█   █|  █    ██\
+*         ██████|  █████   █████   █    ███|
+*         █|       █   █  |█   █|  █    ██/
+*         █|       █   █  |█   █|  █████/
+*
+***/
+#include<bits/stdc++.h>
+#define int long long
+#define FAST ios_base::sync_with_stdio(0),cin.tie(0),cout.tie(0);
+#define double long double
+#define all(v)  v.begin(),v.end()
+#define FAST ios_base::sync_with_stdio(0),cin.tie(0),cout.tie(0);
+#define ll endl
+#define forr(i , n) for(int i = 0 ; i < n ; i++)
+#define forr1(i , n) for(int i = 1 ; i <= n ; i++)
+#define pi pair<int,int>
+#define pis     priority_queue<pi, vector<pi>, greater<pi> > s;
+#define pig     priority_queue<pi>g;
+#define pas     priority_queue<int, vector<int>, greater<int> > s;
+#define pag     priority_queue<int>g;
+#define vpi vector<pair<int,int>>
+#define YES cout <<"YES"<<ll;
+#define NO cout <<"NO"<<ll;
+#define Yes cout <<"Yes"<<ll;
+#define No cout <<"No"<<ll;
+#define yes cout <<"yes"<<ll;
+#define no cout <<"no"<<ll;
+#define opz   std::plus<int>()
+#define opn  std::minus<int>()
+#define opm std::multiplies<int>()
+using namespace std;
+void solve() {
+    map<string, vector<string>> killed , killer;
+    int tributes;
+    cin >> tributes; cin.ignore();
+    string a[tributes];
+    for (int i = 0; i < tributes; i++) {
+        string player_name;
+        getline(cin, player_name);
+        a[i] = player_name;
+    }
+    sort( a , a + tributes);
+    int turns;
+    cin >> turns; cin.ignore();
+    for (int i = 0; i < turns; i++) {
+        string s;
+        getline(cin, s);
+        string x = s.substr(0 , s.find(' '));
+       // cout << x <<ll;
+        string y = s.erase(0 , s.find(' ')+8);
+        y+=' ';
+        while (y.size()>0){
+            string z = y.substr( 0 , y.find(' '));
+            if(z[z.size()-1] == ',') z.erase(z.size()-1);
+          //  cout << z <<ll;
+            killed[x].push_back(z);
+            killer[z].push_back(x);
+            y.erase(0 , y.find(' ')+1);
+         //   cout << y <<ll;
+        }
+    }
+    for(int i = 0 ; i < tributes ; i++){
+        cout <<"Name: "<<a[i]<<ll;
+        cout <<"Killed: ";
+        if(killed[a[i]].empty()) cout <<"None";
+        else sort(killed[a[i]].begin() , killed[a[i]].end());
+        for(int j = 0 ; j < killed[a[i]].size() ; j++){
+           if(j != killed[a[i]].size()-1) cout <<killed[a[i]][j] <<", ";
+           else cout <<killed[a[i]][j];
+           }
+        cout <<ll;
+        cout <<"Killer: ";
+        if(killer[a[i]].empty()) cout <<"Winner";
+        else sort(killer[a[i]].begin() , killer[a[i]].end());
+        for(int j = 0 ; j < killer[a[i]].size() ; j++){
+            if(j != killer[a[i]].size()-1) cout <<killer[a[i]][j] <<",";
+            else cout <<killer[a[i]][j];
+        }
+       if(i != tributes - 1) cout <<ll<<ll;
+    }
+
+    }
+
+int32_t main() {
+    FAST
+    int t = 1;
+    //cin >> t;
+    while(t--){
+        solve();
+    }
+}

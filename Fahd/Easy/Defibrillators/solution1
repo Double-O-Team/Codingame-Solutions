@@ -1,0 +1,54 @@
+
+#include <bits/stdc++.h>
+#include <string>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+
+double calc(double x1 , double y1 , double x2 , double y2){
+    double a = (x2 - x1) * (double)cos((y1+y2)/2);
+    double b = (y2 - y1);
+    double  ans = sqrt(pow(a , 2) + pow(b , 2));
+    return ans * 6371;
+}
+int main()
+{
+    string lon;
+    cin >> lon; cin.ignore();
+    string lat , ans;
+    cin >> lat; cin.ignore();
+    int pos = lon.find(',');
+    lon[pos]='.';
+    pos = lat.find(',');
+    lat[pos]='.';
+    double x1 = stod(lon) , y1 = stod(lat);
+    int n , mn = 1e30 + 5;
+    cin >> n; cin.ignore();
+    for (int i = 0; i < n; i++) {
+        string defib ;
+        getline(cin, defib);
+        pos = defib.find_last_of(';');
+        string  a = defib.substr(pos +1);
+        defib.erase(pos);
+        pos = a.find(',');
+        a[pos] = '.';
+        pos = defib.find_last_of(';');
+        string b = defib.substr(pos + 1);
+        pos = b.find(',');
+        b[pos] = '.';
+        double x2 = stod(b);
+        double y2 = stod(a);
+      if( calc(x1 , y1 , x2 , y2)  < mn){
+          mn = calc(x1 , y1 , x2 , y2);
+          ans = "";
+          for(int j = defib.find(';')+1 ; j < defib.size() ;j++){
+              if(defib[j] == ';') break;
+              ans+=defib[j];
+          }
+      }
+    }
+    cout <<ans <<endl;
+
+}

@@ -1,0 +1,70 @@
+
+#include<bits/stdc++.h>
+#define int long long
+#define FAST ios_base::sync_with_stdio(0),cin.tie(0),cout.tie(0);
+#define double long double
+#define all(v)  v.begin(),v.end()
+#define FAST ios_base::sync_with_stdio(0),cin.tie(0),cout.tie(0);
+#define ll endl
+#define forr(i , n) for(int i = 0 ; i < n ; i++)
+#define forr1(i , n) for(int i = 1 ; i <= n ; i++)
+#define pi pair<int,int>
+#define pis     priority_queue<pi, vector<pi>, greater<pi> > s;
+#define pig     priority_queue<pi>g;
+#define pas     priority_queue<int, vector<int>, greater<int> > s;
+#define pag     priority_queue<int>g;
+#define vpi vector<pair<int,int>>
+#define YES cout <<"YES"<<ll;
+#define NO cout <<"NO"<<ll;
+#define Yes cout <<"Yes"<<ll;
+#define No cout <<"No"<<ll;
+#define yes cout <<"yes"<<ll;
+#define no cout <<"no"<<ll;
+#define opz   std::plus<int>()
+#define opn  std::minus<int>()
+#define opm std::multiplies<int>()
+using namespace std;
+const int N  = 26;
+
+void solve() {
+int h , w;
+cin >> w >>h;
+char a[h][w];
+int b[h][w];
+for(int i  = 0 ; i < h ;i++){
+    for(int j = 0 ; j < w ; j++){
+        cin >> a[i][j];
+        b[i][j] = 0;
+    }
+}
+for(int i =0 ; i < h ; i++){
+    for(int j = 0 ; j < w ; j++){
+        if(a[i][j] == '#') {
+            continue;
+        }
+        else{
+            if(i > 0 && a[i-1][j] == '0')b[i][j]++;
+            if(j > 0 && a[i][j - 1] == '0') b[i][j]++;
+            if(i< h - 1 && a[i+1][j] == '0') b[i][j]++;
+            if(j< w - 1 && a[i][j+1] == '0') b[i][j]++;
+    } 
+}
+}
+for(int i = 0 ; i < h ; i++){
+    for(int j = 0 ; j < w ; j++){
+        if(b[i][j] == 0 && a[i][j] == '#') cout <<'#';
+        else  cout <<b[i][j];
+    }
+    cout<<ll;
+}
+}
+
+int32_t main() {
+    FAST
+    int t = 1;
+     //cin >> t;
+     //cin.ignore();
+    while(t--){
+        solve();
+    }
+}

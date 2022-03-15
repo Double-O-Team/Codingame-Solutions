@@ -1,0 +1,110 @@
+/***
+*  Author:
+*
+*         ██████|  /███\  |█   █|  █████\
+*         █|       █   █  |█   █|  █    ██\
+*         ██████|  █████   █████   █    ███|
+*         █|       █   █  |█   █|  █    ██/
+*         █|       █   █  |█   █|  █████/
+*
+***/
+#include<bits/stdc++.h>
+#define int long long
+#define FAST ios_base::sync_with_stdio(0),cin.tie(0),cout.tie(0);
+#define double long double
+#define all(v)  v.begin(),v.end()
+#define FAST ios_base::sync_with_stdio(0),cin.tie(0),cout.tie(0);
+#define ll endl
+#define forr(i , n) for(int i = 0 ; i < n ; i++)
+#define forr1(i , n) for(int i = 1 ; i <= n ; i++)
+#define pi pair<int,int>
+#define pis     priority_queue<pi, vector<pi>, greater<pi> > s;
+#define pig     priority_queue<pi>g;
+#define pas     priority_queue<int, vector<int>, greater<int> > s;
+#define pag     priority_queue<int>g;
+#define vpi vector<pair<int,int>>
+#define YES cout <<"YES"<<ll;
+#define NO cout <<"NO"<<ll;
+#define Yes cout <<"Yes"<<ll;
+#define No cout <<"No"<<ll;
+#define yes cout <<"yes"<<ll;
+#define no cout <<"no"<<ll;
+#define opz   std::plus<int>()
+#define opn  std::minus<int>()
+#define opm std::multiplies<int>()
+using namespace std;
+void solve() {
+    string x, y;
+    cin >> x >> y;
+    map<int, int> m;
+    m[1] = 31, m[2] = 28, m[3] = 31, m[4] = 30, m[5] = 31, m[6] = 30;
+    m[7] = 31, m[8] = 31, m[9] = 30, m[10] = 31, m[11] = 30, m[12] = 31;
+    int d1, d2, m1, m2, y1, y2;
+    if (x[0] == '0') {
+        string g = x.substr(1, 1);
+        d1 = stoi(g);
+    }
+    if (y[0] == '0') {
+        string g = y.substr(1, 1);
+        d2 = stoi(g);
+    }
+    if (x[3] == '0') {
+        string g = x.substr(1, 1);
+        m1 = stoi(g);
+    }
+    if (y[3] == '0') {
+        string g = y.substr(1, 1);
+        m2 = stoi(g);
+    }
+    string g = x.substr(0, 2);
+    d1 = stoi(g);
+    g = y.substr(0, 2);
+    d2 = stoi(g);
+    g = x.substr(3, 2);
+    m1 = stoi(g);
+    g = y.substr(3, 2);
+    m2 = stoi(g);
+    g = x.substr(6, 4);
+    y1 = stoi(g);
+    g = y.substr(6, 4);
+    y2 = stoi(g);
+    int sum = 0;
+    int fy1 = y1;
+    int fy2 = y2;
+    int fd1 = d1;
+    int fd2 = d2;
+    int fm2 = m2;
+    int fm1 = m1;
+
+    while (d1 != d2 || m1 != m2 || y1 != y2) {
+        d1++;
+        sum++;
+        if (y1 % 4 != 0) m[2] = 28;
+        else if (y1 % 4 == 0) m[2] = 29;
+        if (d1 > m[m1]) {
+            d1 = 1;
+            m1++;
+        }
+        if (m1 == 13) {
+            d1 = 1;
+            m1 = 1;
+            y1++;
+        }
+    }
+    int month = (fy2 - fy1)*12 - fm1 + fm2 - (fd1 > fd2);
+    int days = sum;
+    int year = month / 12;
+    if(year  == 1)  cout <<year <<" year, " ;
+    if(year > 1)  cout <<year <<" years, " ;
+    if(month%12 == 1) cout <<month %12 <<" month, ";
+    if(month %12 > 1) cout <<month % 12 <<" months, ";
+    cout <<"total "<<days <<" days";
+}
+int32_t main() {
+    FAST
+    int t = 1;
+    //cin >> t;
+    while(t--){
+        solve();
+    }
+}

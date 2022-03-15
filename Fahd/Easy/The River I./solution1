@@ -1,0 +1,96 @@
+
+/***************************************************
+*  Author:
+*
+*         ██████|  /███\  |█   █|  █████\
+*         █|       █   █  |█   █|  █    ██\
+*         ██████|  █████   █████   █    ███|
+*         █|       █   █  |█   █|  █    ██/
+*         █|       █   █  |█   █|  █████/
+*
+***************************************************/
+#include<bits/stdc++.h>
+#define int long long
+#define FAST ios_base::sync_with_stdio(0),cin.tie(0),cout.tie(0);
+#define double long double
+#define all(v)  v.begin(),v.end()
+#define FAST ios_base::sync_with_stdio(0),cin.tie(0),cout.tie(0);
+#define ll endl
+#define forr(i , n) for(int i = 0 ; i < n ; i++)
+#define forr1(i , n) for(int i = 1 ; i <= n ; i++)
+#define pi pair<int,int>
+#define pis     priority_queue<pi, vector<pi>, greater<pi> > s;
+#define pig     priority_queue<pi>g;
+#define pas     priority_queue<int, vector<int>, greater<int> > s;
+#define pag     priority_queue<int>g;
+#define vpi vector<pair<int,int>>
+#define YES cout <<"YES"<<ll;
+#define NO cout <<"NO"<<ll;
+#define Yes cout <<"Yes"<<ll;
+#define No cout <<"No"<<ll;
+#define yes cout <<"yes"<<ll;
+#define no cout <<"no"<<ll;
+using namespace std;
+int back(string s , int y){
+    int sum=y;
+    for(int i = 0 ; i < s.size() ; i++) sum += (s[i] - '0');
+    return  sum;
+}
+void solve() {
+    int x , y;
+    cin >> x>>y;
+    map<int , int>a , b;
+    while(true) {
+        a[x]++;
+        b[y]++;
+        if(a[y] > 0){
+            cout << y<<ll;
+            break;
+        }
+        if(b[x] > 0){
+            cout << x <<ll;
+            break;
+        }
+        x = back(to_string(x) , x);
+        y = back(to_string(y) , y);
+    }
+}
+int32_t main() {
+    FAST
+    int t = 1;
+   // cin >> t;
+    while(t--){
+        solve();
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

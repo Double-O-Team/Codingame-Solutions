@@ -1,0 +1,108 @@
+/*******
+*  Author:
+*
+*         ██████|  /███\  |█   █|  █████\
+*         █|       █   █  |█   █|  █    ██\
+*         ██████|  █████   █████   █    ███|
+*         █|       █   █  |█   █|  █    ██/
+*         █|       █   █  |█   █|  █████/
+*
+*******/
+#include<bits/stdc++.h>
+#define int long long
+#define FAST ios_base::sync_with_stdio(0),cin.tie(0),cout.tie(0);
+#define double long double
+#define all(v)  v.begin(),v.end()
+#define FAST ios_base::sync_with_stdio(0),cin.tie(0),cout.tie(0);
+#define ll endl
+#define forr(i , n) for(int i = 0 ; i < n ; i++)
+#define forr1(i , n) for(int i = 1 ; i <= n ; i++)
+#define pi pair<int,int>
+#define pis     priority_queue<pi, vector<pi>, greater<pi> > s;
+#define pig     priority_queue<pi>g;
+#define pas     priority_queue<int, vector<int>, greater<int> > s;
+#define pag     priority_queue<int>g;
+#define vpi vector<pair<int,int>>
+#define YES cout <<"YES"<<ll;
+#define NO cout <<"NO"<<ll;
+#define Yes cout <<"Yes"<<ll;
+#define No cout <<"No"<<ll;
+#define yes cout <<"yes"<<ll;
+#define no cout <<"no"<<ll;
+#define opz   std::plus<int>()
+#define opn  std::minus<int>()
+#define opm std::multiplies<int>()
+using namespace std;
+
+string rotate0(string s , string oper , int shift , string r0) {
+    if (oper == "ENCODE") {
+        for (int i = 0; i < s.size(); i++) {
+            int pos = r0.find(s[i]) + shift;
+            while (pos >= 26) {
+                pos -= 26;
+            }
+            s[i] = r0[pos];
+            shift++;
+        }
+    }
+    else{
+        for (int i = 0; i < s.size(); i++) {
+            int pos = r0.find(s[i]) - shift;
+            while (pos < 0) {
+                pos += 26;
+            }
+            s[i] = r0[pos];
+            shift++;
+  //          cout <<pos<<ll;
+        }
+    }
+    return s;
+}
+string rotate1(string s , int x ,string  alpha1,string  alpha2, string  oper){ //kfq
+    string  ans;
+    int j = 0;
+    if(oper == "ENCODE") {
+        for (int i = 0; i < s.size(); i++) {
+            ans+= alpha2[s[i] -= 'A'];
+        }
+    }
+    else{
+        for (int i = 0; i < s.size(); i++) {
+            int pos = alpha2.find(s[i]);
+            ans+= alpha1[pos];//
+        }
+    }
+    return ans;
+}
+void solve(){
+   string oper , message , r1 , r2 , r3;
+    string r0 = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    int shift;
+    cin >> oper >> shift >> r1 >> r2>> r3 >> message;
+   if(oper == "ENCODE"){
+      string ans1= rotate1(rotate0(message , oper , shift , r0),shift , r0 , r1 , oper);
+       string ans2= rotate1(ans1,shift , r0 , r2 , oper);
+       string ans3= rotate1(ans2,shift , r0 , r3 , oper);
+       cout <<ans3<<ll;
+   }
+   else {
+     string ans1 =  rotate1(message,shift , r0 , r3 , oper);
+    //  cout<<ans1[1]<<ll;
+       string ans2= rotate1(ans1,shift , r0 , r2 , oper);
+      // cout<<ans2[1]<<ll;
+       string ans3= rotate1(ans2,shift , r0 , r1 , oper);
+       //cout<<ans3[1]<<ll;
+
+       string ans4 = rotate0(ans3 , oper , shift , r0);
+      cout <<ans4<<ll;
+   }
+
+}
+int32_t main() {
+    FAST
+    int t = 1;
+    // cin >> t;
+    while(t--){
+        solve();
+    }
+}

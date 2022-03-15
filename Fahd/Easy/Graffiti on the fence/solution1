@@ -1,0 +1,73 @@
+/***
+*  Author:
+*
+*         ██████|  /███\  |█   █|  █████\
+*         █|       █   █  |█   █|  █    ██\
+*         ██████|  █████   █████   █    ███|
+*         █|       █   █  |█   █|  █    ██/
+*         █|       █   █  |█   █|  █████/
+*
+***/
+#include<bits/stdc++.h>
+#define int long long
+#define FAST ios_base::sync_with_stdio(0),cin.tie(0),cout.tie(0);
+#define double long double
+#define all(v)  v.begin(),v.end()
+#define FAST ios_base::sync_with_stdio(0),cin.tie(0),cout.tie(0);
+#define ll endl
+#define forr(i , n) for(int i = 0 ; i < n ; i++)
+#define forr1(i , n) for(int i = 1 ; i <= n ; i++)
+#define pi pair<int,int>
+#define pis     priority_queue<pi, vector<pi>, greater<pi> > s;
+#define pig     priority_queue<pi>g;
+#define pas     priority_queue<int, vector<int>, greater<int> > s;
+#define pag     priority_queue<int>g;
+#define vpi vector<pair<int,int>>
+#define YES cout <<"YES"<<ll;
+#define NO cout <<"NO"<<ll;
+#define Yes cout <<"Yes"<<ll;
+#define No cout <<"No"<<ll;
+#define yes cout <<"yes"<<ll;
+#define no cout <<"no"<<ll;
+#define opz   std::plus<int>()
+#define opn  std::minus<int>()
+#define opm std::multiplies<int>()
+using namespace std;
+const int N  = 26;
+
+void solve() {
+    int n , l , x, y;
+    cin  >> l >> n;
+    vector<pair<int , int>>v;
+    int  mx = 0;
+
+    for(int  i =0 ; i < n ; i++){
+        cin >> x >> y;
+        v.push_back({x , y});
+        mx = max(mx , y);
+    }
+    sort(v.begin() , v.end());
+    x = 0;
+    bool temp = false;
+    for(int i =0 ; i < v.size() ;i++){
+        if(v[i].first > x){
+            cout << x <<" "<<v[i].first<<ll;
+            temp = true;
+        }
+        if(v[i].second > x) x = v[i].second;
+    }
+    if(x < l) {
+        temp = true;
+        cout << mx <<" "<< l <<ll;
+    }
+    if(!temp) cout <<"All painted"<<ll;
+}
+
+int32_t main() {
+    FAST
+    int t = 1;
+    // cin >> t;
+    while(t--){
+        solve();
+    }
+}
