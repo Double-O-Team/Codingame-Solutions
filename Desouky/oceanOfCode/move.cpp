@@ -1,15 +1,19 @@
 #include <bits/stdc++.h>
 using namespace std;
-const int MAXN = 15;
-char grid[MAXN][MAXN];
-
+const int N = 15;
 // Authors
-// 1- 3rbi 
+// 1- 3rbi
 // 2- Desouky
 
+int dx[4] = {0,0,1,-1};
+int dy[4] = {1,-1,0,0};
+int memo[N][N];
+bool vis[N][N];
+queue<pair<int , int>> ans;
+bool visBuild[N][N];
+int bestGrid[N][N];
+char grid[N][N];
 
-int memo[20][20];
-bool vis[15][15];
 bool valid(int i , int j) {
     return i >= 0 and j >= 0 and i < 15 and j < 15 and grid[i][j] == '.' and !vis[i][j];
 }
@@ -19,18 +23,14 @@ int longestPath(int row , int col) {
     int &ret = memo[row][col];
     if(~ret)return ret;
     ret = 1;
+    int mx = -(1e5);
     vis[row][col] = true;
-    int path1 = longestPath(row + 1, col);
-    int path2 = longestPath(row, col + 1);
-    int path3 = longestPath(row - 1, col);
-    int path4 = longestPath(row, col - 1);
+    for(int x = 0; x<4; x++) {
+        mx = max(mx, longestPath(row + dx[x], col + dy[x]));
+    }
     vis[row][col] = false;
-    return ret += max({path1 , path2 , path3 , path4});
+    return ret += mx;
 }
-
-queue<pair<int , int>> ans;
-bool visBuild[15][15];
-int bestGrid[15][15];
 
 void buildPathVersionTwo(int row, int col) {
     if(!valid(row , col))return;
@@ -38,22 +38,20 @@ void buildPathVersionTwo(int row, int col) {
     visBuild[row][col] = true;
     ans.push({row, col});
     int mx = 0;
-    if(valid(row+1 , col) and !visBuild[row+1][col])mx = max(mx, bestGrid[row+1][col]);
-    if(valid(row-1 , col) and !visBuild[row-1][col])mx = max(mx, bestGrid[row-1][col]);
-    if(valid(row , col+1) and !visBuild[row][col+1])mx = max(mx, bestGrid[row][col+1]);
-    if(valid(row , col-1) and !visBuild[row][col-1])mx = max(mx, bestGrid[row][col-1]);
+    for(int x = 0; x<4; x++){
+        if(valid(row+dx[x] , col+dy[x]) and !visBuild[row+dx[x]][col+dy[x]]){
+            mx = max(mx, bestGrid[row+dx[x]][col+dy[x]]);
+        }
+    }
 
-    if(mx == bestGrid[row + 1] [col]){
-
-        buildPathVersionTwo(row + 1, col);
-    }else if(mx == bestGrid[row - 1][col]){
-        buildPathVersionTwo(row - 1, col);
-    }else if(mx == bestGrid[row][col+1]){
-        buildPathVersionTwo(row, col+1);
-    }else if(mx == bestGrid[row][col-1]){
-        buildPathVersionTwo(row, col-1);
+    for(int x = 0; x<4; x++){
+        if(mx == bestGrid[row+dx[x]][col+dy[x]]){
+            buildPathVersionTwo(row+dx[x] , col+dy[x]);
+            break;
+        }
     }
 }
+
 queue<pair<int , int>> surface(int row , int col){
     memset(memo, -1, sizeof memo);
     memset(visBuild, false, sizeof visBuild);
